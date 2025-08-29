@@ -48,12 +48,13 @@
                                         <h1 class="h4 text-gray-900 mb-4">Register for Webinar!</h1>
                                     </div>
 
-                                    <form class="user needs-validation" novalidate action="{{ url('/register') }}" method="POST">
+                                    <form class="user needs-validation" action="{{ route('register-webinar') }}" 
+                                    method="POST">
                                         @csrf
                                         <div class="form-group">
                                             <input type="text"
                                                    class="form-control form-control-user"
-                                                   name="FirstName"
+                                                   name="firstname"
                                                    id="FirstName"
                                                    placeholder="First Name"
                                                    required>
@@ -73,7 +74,7 @@
                                         <div class="form-group">
                                             <input type="email"
                                                    class="form-control form-control-user"
-                                                   name="InputEmail"
+                                                   name="emailid"
                                                    id="InputEmail"
                                                    placeholder="Email Address"
                                                    required>

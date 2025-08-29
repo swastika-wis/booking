@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -14,5 +15,12 @@ class LoginController extends Controller
     {
         $type="admin";
         return view('dashboard',compact('type'));
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::guard('webuser')->logout();
+        $request->session()->flash('success','Logout successful!');
+        return redirect()->route('home');
     }
 }

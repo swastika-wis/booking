@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Session;
 
 class ZohoController extends Controller
 {
-    private $clientId = "1000.KWX8O52S8SNPLOT8CLIRM489TCOUIT";
-    private $clientSecret = "76275d13c26f31e75f8e3f139c101c08992e67a11e";
-    private $redirectUri = "http://localhost:8000/start-conference";
+    private $clientId = '1000.KWX8O52S8SNPLOT8CLIRM489TCOUIT';
+    private $clientSecret = '76275d13c26f31e75f8e3f139c101c08992e67a11e';
+    private $redirectUri = 'http://localhost:8003/start-conference';
 
     // Step 1: Redirect to Zoho OAuth
     public function redirectToZoho()
@@ -31,7 +31,7 @@ class ZohoController extends Controller
     public function handleCallback(Request $request)
     {
 
-        dd($_POST);
+       // dd($_POST);
         $code = $request->query('code');
 
         $response = Http::asForm()->post("https://accounts.zoho.com/oauth/v2/token", [
@@ -100,9 +100,9 @@ class ZohoController extends Controller
 
        $response = Http::asForm()->post("https://accounts.zoho.in/oauth/v2/token", [
             'code' => $code,
-            'client_id' => env('ZOHO_CLIENT_ID'),
-            'client_secret' => env('ZOHO_CLIENT_SECRET'),
-            'redirect_uri' => env('ZOHO_REDIRECT_URI'),
+            'client_id' => "1000.KWX8O52S8SNPLOT8CLIRM489TCOUIT",
+            'client_secret' => "76275d13c26f31e75f8e3f139c101c08992e67a11e",
+            'redirect_uri' => "http://localhost:8003/start-conference",
             'grant_type' => 'authorization_code',
         ]);
 

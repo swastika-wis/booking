@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'webuser' => [   
+            'driver' => 'session',
+            'provider' => 'webusers',
+        ],
     ],
 
     /*
@@ -69,6 +73,11 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+        'webusers' => [  
+            'driver' => 'eloquent',
+            'model' => App\Models\WebUser::class,
+        ],
+
     ],
 
     /*
