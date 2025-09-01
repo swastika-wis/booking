@@ -9,12 +9,17 @@ class LoginController extends Controller
 {
     public function login(Request $request)
     {
-        return redirect('dashboard');
+        switch($request->type)
+        {
+            case "zoho":
+                return redirect()->route('zoho.dashboard');
+        }
+        
     }
     public function dashboard()
     {
-        $type="admin";
-        return view('dashboard',compact('type'));
+        $leads=[];
+        return view('zoho.dashboard',compact('leads'));
     }
 
     public function logout(Request $request)

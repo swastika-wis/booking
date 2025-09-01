@@ -84,15 +84,18 @@
 
                 <iframe id="bigmarker_embed_conference_room" src="https://webinar.zoho.in/meeting/register/embed?sessionId=1347451395" width="720" height="402" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-                <a href="https://webinar.zoho.in/meeting/webinar-start?key=1383278862&x-meeting-org=60046124840" target="_blank">
-                  Join Webinar
-                </a>
+               
+
+                <button id="joinWebinarBtn" class="btn btn-success">Join Webinar </button>
 
                   <div class="iframe-container" style="overflow: hidden; position: relative;">
                   <!--iframe allow="microphone; camera" style="border: 0; height: 100%; left: 0; position: absolute; top: 0; width: 100%;" src="https://zoom.us/wc/96348694113/join?prefer=1&un=YnJhamVzaA=="   allow="microphone; camera; fullscreen" frameborder="0"></iframe//-->
                     {{-- <img src="{{asset('/assets/img/seminar')" class="img-fluid text-center mx-auto" alt="Responsive image">    --}}
                     <!--iframe width="720" height="800" src="https://boxcast.tv/view-embed/test-fgunyacksijakhohg2u3?showTitle=0&showDescription=0&showHighlights=0&showRelated=0&showCountdown=1&market=smb&showDocuments=0&showIndex=0&showDonations=0" frameBorder="0" scrolling="auto" allowfullscreen="true" allow="autoplay; fullscreen"></iframe//-->
               </div>
+              
+
+              
                 </div>
               </div>
 
@@ -189,6 +192,16 @@ function openFullscreen() {
     elem.msRequestFullscreen();
   }
 }
+</script>
+
+<script>
+  document.getElementById('joinWebinarBtn').addEventListener('click', function() {
+      window.open(
+          "https://webinar.zoho.in/meeting/webinar-start?key=1393371485&x-meeting-org=60046124840",
+          "_blank",
+          "width=1200,height=800"
+      );
+  });
 </script>
 
 </body>
