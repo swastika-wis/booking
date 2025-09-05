@@ -52,17 +52,5 @@ class WebUserController extends Controller
 
     }
 
-    public function user_login(Request $request)
-    {
-        $user = WebUser::where('phone', $request->phone)->first();
-
-        if ($user) {
-            Auth::guard('webuser')->login($user);
-            return redirect()->route('dashboard')->with('success', 'Welcome back!');
-        }
-
-        $request->session()->flash('fail','Unable to login!');
-        return redirect()->route('home');
-
-    }
+    
 }

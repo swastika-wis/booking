@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\WebUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -9,23 +11,27 @@ class LoginController extends Controller
 {
     public function login(Request $request)
     {
-        switch($request->type)
+        $auth = Auth::attempt(['email'=>$request->email,'password'=>$request->password]);
+        if($auth)
         {
-            case "zoho":
-                return redirect()->route('zoho.dashboard');
+            $request->session()->regenerate();
+            return redirect()->route('dashboard');
         }
+        
+        $request->session()->flash('fail','Unable to login!');
+        return redirect()->route('index');
         
     }
     public function dashboard()
     {
         $leads=[];
-        return view('zoho.dashboard',compact('leads'));
+        return view('admin.dashboard',compact('leads'));
     }
 
     public function logout(Request $request)
     {
-        Auth::guard('webuser')->logout();
+        Auth::logout();
         $request->session()->flash('success','Logout successful!');
-        return redirect()->route('home');
+        return redirect()->route('index');
     }
 }

@@ -37,14 +37,6 @@ class RouteServiceProvider extends ServiceProvider
                 ->prefix('admin')
                 ->group(base_path('routes/admin.php'));
 
-            Route::middleware('zoom')
-                ->prefix('zoom')
-                ->group(base_path('routes/zoom.php'));
-            
-            Route::middleware('zoho')
-                ->prefix('zoho')
-                ->group(base_path('routes/zoho.php'));
-
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
         });

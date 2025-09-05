@@ -17,12 +17,11 @@ class CheckWebUser
     public function handle(Request $request, Closure $next): Response
     {
         // Check if user logged in with 'webuser' guard
-        if (!Auth::guard('webuser')->check()) {
+        if (!Auth::guard()->check()) {
         
             $request->session()->flash('fail','Please login first!');
-            return redirect()->route('home');
+            return redirect()->route('index');
         }
-
         
 
         return $next($request);

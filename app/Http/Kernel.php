@@ -72,9 +72,6 @@ class Kernel extends HttpKernel
     ];
 
     protected $routeMiddleware = [
-
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
-        'zoom' => \App\Http\Middleware\ZoomMiddleware::class,
-        'zoho' => \App\Http\Middleware\ZohoMiddleware::class,
     ];
 }

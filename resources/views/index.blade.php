@@ -3,106 +3,116 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zoom & Zoho</title>
+  <title>Webinar Login</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: Arial, sans-serif;
+    body {
+      background: #f5f5f5;
+    }
+    .login-container {
+      max-width: 950px;
+      margin: 50px auto;
+      border-radius: 12px;
       overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
     }
-
-    .container {
-      display: flex;
-      height: 100vh;
-      width: 100%;
-    }
-
-    .half {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      color: white;
+    .left-panel {
+      background: #a3d2ca;
+      color: #fff;
       text-align: center;
-      position: relative;
+      padding: 40px;
     }
-
-    .zoom {
-      background: url('https://zoom.us/docs/images/en-us/zoom-logo.png') no-repeat center/cover, #0055cc;
-    }
-
-    .zoho {
-      background: url('https://www.zohowebstatic.com/sites/default/files/styles/product-home-page/public/zoho-logo.png') no-repeat center/contain, #111;
-      background-position: center 30%;
-      background-size: 200px auto;
-    }
-
-    .overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-    }
-
-    .content {
-      position: relative;
-      z-index: 2;
-      padding: 20px;
-    }
-
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 15px;
-    }
-
-    p {
-      font-size: 1.1em;
+    .left-panel img {
+      max-width: 80%;
+      height: auto;
       margin-bottom: 20px;
     }
-
-    .btn {
-      background: transparent;
-      border: 2px solid white;
-      padding: 10px 20px;
-      color: white;
-      font-size: 1em;
-      text-decoration: none;
-      transition: 0.3s;
+    .right-panel {
+      padding: 40px;
+      background: #fff;
     }
-
-    .btn:hover {
-      background: white;
-      color: black;
+    .divider {
+      position: relative;
+      text-align: center;
+      margin: 20px 0;
     }
-
+    .divider::before,
+    .divider::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 40%;
+      height: 1px;
+      background: #ccc;
+    }
+    .divider::before { left: 0; }
+    .divider::after { right: 0; }
+    .divider span {
+      background: #fff;
+      padding: 0 10px;
+      color: #777;
+      font-size: 14px;
+    }
+    .google-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 10px;
+      cursor: pointer;
+      background: #fff;
+    }
+    .google-btn img {
+      width: 20px;
+      margin-right: 10px;
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- Zoom Section -->
-    <div class="half zoom">
-      <div class="overlay"></div>
-      <div class="content">
-        <h1>ZOOM</h1>
-        <p>Host or join meetings with ease and connect with your team instantly.</p>
-        <a href="" target="_blank" class="btn">Start with Zoom</a>
+  <div class="container login-container">
+    <div class="row g-0">
+      <!-- Left panel -->
+      <div class="col-md-6 left-panel d-flex flex-column justify-content-center align-items-center">
+        <img src="{{asset('/assets/img/wis-logo.png')}}" alt="Webinar Illustration">
+        <h3>Join Engaging Webinars</h3>
+        <p>Learn, connect, and grow through interactive online sessions.</p>
       </div>
-    </div>
+      
+      <!-- Right panel -->
+      <div class="col-md-6 right-panel">
 
-    <!-- Zoho Section -->
-    <div class="half zoho">
-      <div class="overlay"></div>
-      <div class="content">
-        <h1>ZOHO</h1>
-        <p>Manage your business with powerful Zoho tools and integrations.</p>
-        <a href="{{route('zoho-home')}}" class="btn">Start with Zoho</a>
+        @if(session('fail'))
+          <div class="alert alert-danger">{{session('fail')}}</div>
+        @endif
+
+        @if(session('success'))
+          <div class="alert alert-success">{{session('success')}}</div>
+        @endif
+
+        <h2 class="text-center mb-3">Welcome Back</h2>
+        <p class="text-center text-muted">Login to your Webinar account</p>
+        
+        <form action="{{route('login')}}" method="post">
+         @csrf
+          <div class="mb-3">
+            <label for="text" class="form-label">Email address</label>
+            <input type="text" name="email" class="form-control" placeholder="Enter email">
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+          </div>
+          {{-- <div class="d-flex justify-content-between mb-3">
+            <a href="#" class="small">Forgot password?</a>
+          </div> --}}
+          <button type="submit" class="btn btn-dark w-100">Sign In</button>
+        </form>
+       
       </div>
     </div>
   </div>
+
+  
 </body>
 </html>
